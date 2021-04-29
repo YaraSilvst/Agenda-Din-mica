@@ -13,13 +13,25 @@ typedef struct Pessoa{
   struct Pessoa *proximo;
 } Pessoa;
 
+void listar(Pessoa *aux){
+  while(aux != NULL){
+    printf("Codigo: %i\n", aux->codigo);
+    printf("Nome: %s\n", aux->nome);
+    printf("Telefone: %s\n", aux->telefone);
+    printf("Email: %s\n", aux->email);
+    printf("Aniversario: %s\n", aux->aniversario);
+    printf("Anotacoes: %s\n", aux->anotacoes);
+    printf("\n-----------------\n");
+    aux = aux->proximo;
+  }
+}
+
 int main(void) {
 
     Pessoa *p = NULL, *aux, *ultimo;
-    int i;
+    int op;
 
-    for(i = 0; i < 3; i++){
-  
+    do {
         aux = malloc(sizeof(Pessoa));
 
         printf("Digite o codigo: ");
@@ -53,23 +65,13 @@ int main(void) {
         ultimo = aux;
         }
 
-      }
+      printf("\nDeseja cadastrar outro contato? 1-Sim | 0-Nao\n");
+      scanf("%i", &op);
+      printf("\n-----------------\n");
 
-    printf("\n-----------------\n");
-    aux=p;
-    
-    for(i = 0; i < 3; i++){
+    } while (op>0);
 
-        printf("Codigo: %i\n", aux->codigo);
-        printf("Nome: %s\n", aux->nome);
-        printf("Telefone: %s\n", aux->telefone);
-        printf("Email: %s\n", aux->email);
-        printf("Aniversario: %s\n", aux->aniversario);
-        printf("Anotacoes: %s\n", aux->anotacoes);
+      listar(p);
 
-        printf("\n-----------------\n");
-
-        aux = aux->proximo;
-    }
-  return 0;
+      return 0;
 }
